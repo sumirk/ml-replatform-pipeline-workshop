@@ -1,0 +1,8 @@
+# Ignore virtual environment folder
+venv/
+
+# Ignore the 'app' directory
+tensorflow-pipeline-docker/app/
+
+# Ignore the 'checkpoints' directory and its contents
+tensorflow-pipeline-docker/checkpoints/

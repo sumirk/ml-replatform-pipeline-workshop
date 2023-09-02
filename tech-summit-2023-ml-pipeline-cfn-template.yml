@@ -1,0 +1,80 @@
+AWSTemplateFormatVersion: '2010-09-09'
+Description: Create an Fargate cluster, and an ECS task with the provided IAM role
+
+Parameters:
+  S3BucketName:
+    Type: String
+    Description: Name of the S3 bucket where data will be stored
+
+Resources:
+  FargateCluster:
+    Type: AWS::ECS::Cluster
+    Properties:
+      ClusterName: !Sub "ml-pipeline-cluster-${AWS::StackName}"
+
+  IAMRole:
+    Type: AWS::IAM::Role
+    Properties:
+      RoleName: !Sub "ecsTaskExecutionRole-${AWS::StackName}"
+      AssumeRolePolicyDocument:
+        Version: "2008-10-17"
+        Statement:
+          - Effect: Allow
+            Principal:
+              Service: ecs-tasks.amazonaws.com
+            Action: sts:AssumeRole
+      ManagedPolicyArns:
+        - arn:aws:iam::aws:policy/CloudWatchFullAccess
+        - arn:aws:iam::aws:policy/AmazonS3FullAccess
+        - arn:aws:iam::aws:policy/service-role/AmazonECSTaskExecutionRolePolicy
+      Policies:
+        - PolicyName: AdditionalPolicy
+          PolicyDocument:
+            Version: "2012-10-17"
+            Statement:
+              - Effect: Allow
+                Action:
+                  - iam:GetRole
+                  - iam:PassRole
+                Resource: "*"
+
+  ECSTaskDefinition:
+    Type: AWS::ECS::TaskDefinition
+    Properties:
+      Family: !Sub "${AWS::StackName}-my-ml-task"
+      RequiresCompatibilities:
+        - FARGATE
+      ExecutionRoleArn: !GetAtt IAMRole.Arn # Reference the IAM role ARN
+      TaskRoleArn: !GetAtt IAMRole.Arn # Reference the IAM role ARN
+      NetworkMode: awsvpc
+      Cpu: '2048'
+      Memory: '4096'
+      ContainerDefinitions:
+        - Name: !Sub "${AWS::StackName}-my-ml-container"
+          Image: !Sub "${AWS::AccountId}.dkr.ecr.${AWS::Region}.amazonaws.com/techsummit2023mlops-repository:latest"
+          Memory: 4096
+          Cpu: 2048
+          LogConfiguration:
+            LogDriver: awslogs
+            Options:
+              awslogs-create-group: "true"
+              awslogs-group: "awslogs-ml-pipeline-docker"
+              awslogs-region: !Ref AWS::Region # Reference the current region
+              awslogs-stream-prefix: "awslogs-ml-pipeline-docker-summit"
+          Essential: true
+          Environment:
+            - Name: BUCKET_NAME
+              Value: !Ref S3BucketName
+
+Outputs:
+  FargateClusterName:
+    Description: Fargate Cluster Name
+    Value: !Ref FargateCluster
+
+  ContainerImage:
+    Description: Image used in ContainerDefinitions
+    Value: !Sub "${AWS::AccountId}.dkr.ecr.${AWS::Region}.amazonaws.com/techsummit2023mlops-repository:latest"
+
+  ECSTaskDefinitionArn:
+    Description: ARN of the ECS task definition
+    Value: !Ref ECSTaskDefinition

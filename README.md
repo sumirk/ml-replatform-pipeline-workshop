@@ -1,14 +1,13 @@
-         ___        ______     ____ _                 _  ___  
-        / \ \      / / ___|   / ___| | ___  _   _  __| |/ _ \ 
-       / _ \ \ /\ / /\___ \  | |   | |/ _ \| | | |/ _` | (_) |
-      / ___ \ V  V /  ___) | | |___| | (_) | |_| | (_| |\__, |
-     /_/   \_\_/\_/  |____/   \____|_|\___/ \__,_|\__,_|  /_/ 
- ----------------------------------------------------------------- 
+Hi There,
 
+Welcome to this Workshop for replatforming ML pipeline to Sagemaker Pipelines
 
-Hi there! Welcome to AWS Cloud9!
+Please clone this workshop 
 
-To get started, create some files, play with the terminal,
-or visit https://docs.aws.amazon.com/console/cloud9/ for our documentation.
-
-Happy coding!
+- Create a S3bucket in yoru account
+- run the command "chmod +x deploy-cfn-run-task.sh" in the root diretory
+- run the bash script './deploy-cfn-run-task.sh' and then run pass the s3-bucket name and the stack-name and your AWS account number to this command. for eg - ./deploy-cfn-run-task techsummit2023mlops cfn-test-summit-cli-01 9707709xxxx 
+- The above step will create a cloudformation template and build the docker container and push to ECR.
+- A ECS cluster will also be created which will run a task to run the ML pipeline project in the ECS Fargate cluster as a standlone task.
+- The trained kmodel and the checkpoints will be saved to your S3 bucket.
+- The next steps would be to go through the notebook files and spend the time in re-platforming the solution to Sagemaker.

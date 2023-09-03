@@ -11,6 +11,7 @@ Please clone this workshop
 - A Fargate ECS cluster will also be created which will run a task to run the ML pipeline project as a standlone task in your accounts default VPC, Default Subnet with Default security group.
 - So, please validate if they provide network connectivity to connect to public resources.
 - The trained model and the checkpoints will be saved to your S3 bucket by the container task and then the task will be stopped.
+- The training metrics are being logged to Cloudwatch by the Fargate task. If you want to take a look check the tasks logging in ECS console.
 - If you want to run the task again you can do so by running the "aws ecs run-task ...." command in the shell script.
 - You should spend the initial 10-15 mins to understand this project and have taken note of the steps and resources being created.
 

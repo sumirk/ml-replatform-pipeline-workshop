@@ -29,4 +29,4 @@ Please clone this workshop
 
 - If you have completed the above steps - Congratulations !! you have completed the first section of this workshop. The fun begins now :)
   
-- Follow the steps mentioned in the master.ipynb notebook in the root of the cloned repo in Sagemaker studio.
+- Follow the steps mentioned in the Readme.ipynb notebook in the root of the cloned repo in Sagemaker studio.

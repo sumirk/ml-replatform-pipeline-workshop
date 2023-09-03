@@ -13,4 +13,4 @@ Please clone this workshop
 - The next steps would be to go through the notebook files and spend the time in re-platforming the solution to Sagemaker.
 
 
-![image](https://github.com/sumirk/ml-replatform-pipeline-workshop/assets/53355338/1e6426d6-dad5-4a6a-9196-ac0e87cd2a79)
+![image](https://github.com/sumirk/ml-replatform-pipeline-workshop/assets/53355338/07ef5076-1ea8-45ab-a68e-a86a7555095e)

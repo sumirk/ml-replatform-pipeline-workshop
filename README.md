@@ -11,3 +11,6 @@ Please clone this workshop
 - A ECS cluster will also be created which will run a task to run the ML pipeline project in the ECS Fargate cluster as a standlone task.
 - The trained kmodel and the checkpoints will be saved to your S3 bucket.
 - The next steps would be to go through the notebook files and spend the time in re-platforming the solution to Sagemaker.
+
+
+![image](https://github.com/sumirk/ml-replatform-pipeline-workshop/assets/53355338/1e6426d6-dad5-4a6a-9196-ac0e87cd2a79)

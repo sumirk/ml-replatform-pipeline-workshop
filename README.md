@@ -24,8 +24,8 @@ Please clone this workshop
 
 - After this step open Sagemaker Studio in other browser window if you already have Studio deployed and then use the system terminal to clone the below repository in your Sagemaker studio system terminal.
 
-- To open in browser - https://github.com/sumirk/ml-replatform-pipeline-sagemaker-workshop
-- Clone link - https://github.com/sumirk/ml-replatform-pipeline-sagemaker-workshop.git
+  - To open in browser - https://github.com/sumirk/ml-replatform-pipeline-sagemaker-workshop
+  - Clone link - https://github.com/sumirk/ml-replatform-pipeline-sagemaker-workshop.git
 
 - If you have completed the above steps - Congratulations !! you have completed the first section of this workshop. The fun begins now :)
   

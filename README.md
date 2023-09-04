@@ -5,14 +5,30 @@ Welcome to this Workshop for replatforming ML pipeline to Sagemaker Pipelines
 Please clone this workshop 
 
 - Create a S3bucket in your account
-- run the command "chmod +x deploy-cfn-run-task.sh" in the root diretory
-- run the bash script './deploy-cfn-run-task.sh' and then run pass the s3-bucket name, the stack-name and your AWS account number to this command. for eg - ./deploy-cfn-run-task techsummit2023mlops cfn-test-summit-cli-01 9707709xxxx 
+- If you do not have a Sagemaker Studio and a Cloud9 environment then use the below CFN template to deploy both in your account.
+  - https://github.com/tom5610/amazon-sagemaker-mlops-samples/blob/main/template.yaml
+
+- Open the Cloud9 environment and follow the guide below to resize the EBS volume:-
+  - https://docs.aws.amazon.com/cloud9/latest/user-guide/move-environment.html
+
+- Clone this repo in Cloud9 environment.
+
+- Run the command "chmod +x deploy-cfn-run-task.sh" in the root diretory
+  
+- Run the bash script './deploy-cfn-run-task.sh' and then run pass the s3-bucket name, the stack-name and your AWS account number to this command. for eg - ./deploy-cfn-run-task techsummit2023mlops cfn-test-summit-cli-01 9707709xxxx
+  
 - The above step will create a cloudformation template and build the docker container in the directory and push to ECR.
+  
 - A Fargate ECS cluster will also be created which will run a task to run the ML pipeline project as a standlone task in your accounts default VPC, Default Subnet with Default security group.
+  
 - So, please validate if they provide network connectivity to connect to public resources.
+  
 - The trained model and the checkpoints will be saved to your S3 bucket by the container task and then the task will be stopped.
+  
 - The training metrics are being logged to Cloudwatch by the Fargate task. If you want to take a look check the tasks logging in ECS console.
+  
 - If you want to run the task again you can do so by running the "aws ecs run-task ...." command in the shell script.
+  
 - You should spend the initial 10-15 mins to understand this project and have taken note of the steps and resources being created.
 
 - The below two diagrams/screenshots show the structure of the project.

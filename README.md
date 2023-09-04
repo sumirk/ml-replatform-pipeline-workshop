@@ -17,7 +17,7 @@ Please clone this workshop
   
 - Run the bash script './deploy-cfn-run-task.sh' and then run pass the s3-bucket name, the stack-name and your AWS account number to this command. for eg - ./deploy-cfn-run-task techsummit2023mlops cfn-test-summit-cli-01 9707709xxxx
   
-- The above step will create a cloudformation template and build the docker container in the directory and push to ECR.
+- The above step will create a cloudformation template and build the docker container from the DockerFile locally and tag and push the image to ECR.
   
 - A Fargate ECS cluster will also be created which will run a task to run the ML pipeline project as a standlone task in your accounts default VPC, Default Subnet with Default security group.
   
